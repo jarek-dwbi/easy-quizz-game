@@ -12,10 +12,10 @@ int menufunc(){
 }
 
 
-void game(char questions[4][50], char options[4][100]){
+void game(char questions[4][1000], char options[4][1000]){
 
      char userChoice;
-     char answers[] = {'A', 'B', 'D', 'B'};
+     char answers[] = {'B', 'C', 'D', 'A'};
    
     int score = 0;
 
@@ -56,29 +56,24 @@ void game(char questions[4][50], char options[4][100]){
 
 int playagainchoice = 0;
     do{
-        printf("\nDo you want to play again? 1 for YES, 2 for NO(Return to the Menu): ");
-        scanf("%d", &playagainchoice);
-        while(getchar() != '\n');
+       printf("\nDo you want to play again? 1 for YES, 2 for NO(Return to the Menu): ");
+    if (scanf("%d", &playagainchoice) != 1) {
+        playagainchoice = 0; // if you typed the letter
+    }
+    while (getchar() != '\n'); 
 
-    if(playagainchoice == 1){
+    if (playagainchoice == 1) {
         game(questions, options);
-
-    }  
-
-    else if(playagainchoice == 2){
-        menufunc();
+    } 
+    else if (playagainchoice == 2) {
+        break; // we dont need to type in menufunc(), because it will show automatically therefore it would double if we called the function here
+    } 
+    else {
+        printf("\nInvalid choice! Type in 1 or 2.\n"); 
     }
 
-    else{
-        printf("\nInvalid choice! Type in 1 or 2: ");
-        printf("\nDo you want to try again? 1 for YES, 2 for NO(Return to the Menu): ");
-        scanf("%d", &playagainchoice);
-         while (getchar() != '\n');       
-    }
-
-    }while(playagainchoice != 1 || 2);
+    }while(playagainchoice != 1 && playagainchoice != 2);
     
-}
 
 
 
